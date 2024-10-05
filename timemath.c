@@ -107,7 +107,7 @@ int main(int argc, char** argv)
 	double actualyears = (seconds / YEAR);
 
 	putc('\n', stdout);
-	printf("second:  %.1f\n", seconds);
+	printf("seconds:  %.0f\n", seconds);
 	printf("minutes: %.1f\n", minutes);
 	printf("hours:   %.1f\n", hours);
 	printf("days:    %.1f\n", days);
