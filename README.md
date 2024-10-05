@@ -1,11 +1,11 @@
-Simple utility that approximately calculates the time between two calendar dates in units of time.
-The library works with dates ranging from 0000 to 9999, and as of now only supports the DDMMYY format.
+Simple utility that approximately calculates the time between two calendar dates in units of time.\
+The library works with dates ranging from 0000 to 9999, and as of now only supports the DDMMYY format.\
 Only depends on the C standard library, requiring a compiler supporting >C89.
 
 ## Usage
 ```console
-timemath [date1] [date2]\
-timemath [date2] [date1]
+timemath [DD/MM/YY] [DD/MM/YY]
+timemath [DD/MM/YY] [DD/MM/YY]
 ```
 ## Examples
 ```console
@@ -19,8 +19,6 @@ weeks:   0.1
 months:  0.0
 years:   0.0
 ```
-
-Here's an example showing
 ```console
 $ timemath 01/09/1939 02/09/1945
 

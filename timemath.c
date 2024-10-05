@@ -56,7 +56,7 @@ int main(int argc, char** argv)
 	double seconds = (years * 3.154e+7) + diff + extra;
 	double minutes = (seconds / 60.0);
 	double hours = (seconds / 3600.0);
-	double days = (seconds / 86400.0);
+	double days = round(seconds / 86400.0);
 	double weeks = (seconds / 604800.0);
 	double months = (seconds / 2.628e+6);
 	double actualyears = (seconds / 3.154e+7);
