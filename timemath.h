@@ -1,13 +1,15 @@
 #ifndef TIMEMATH_H
 #define TIMEMATH_H
 
-void skiparg(int *argc, char **argv);
+void usage();
 
 // TODO: Implement support for formats other than DDMMYY and add commandline arguments for them
 
 typedef enum TimeFormat {
-	DDMMYY,
-	MMDDYY
+	DDMMYYYY,
+	MMDDYYYY,
+	YYYYMMDD,
+	YYYYDDMM
 } TimeFormat;
 
 struct tm parsetime(const char *const str, int format);
