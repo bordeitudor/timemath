@@ -1,28 +1,34 @@
-Only format supported is DD/MM/YY.\
-Supports dates ranging from  0000 to 9999.
+Simple utility that approximately calculates the time between two calendar dates in units of time.
+The library works with dates ranging from 0000 to 9999, and as of now only supports the DDMMYY format.
+Only depends on the C standard library, requiring a compiler supporting >C89.
 
 ## Usage
->timemath [date1] [date2]\
->timemath [date2] [date1]
+```console
+timemath [date1] [date2]\
+timemath [date2] [date1]
+```
 ## Examples
-```
->timemath 03/10/2024 04/10/2024
+```console
+$ timemath 03/10/2024 04/10/2024
+
+second:  86400.0
+minutes: 1440.0
+hours:   24.0
+days:    1.0
+weeks:   0.1
+months:  0.0
+years:   0.0
 ```
 
->86400 seconds\
->1440 minutes\
->24 hours\
->1 days\
->0 months\
->0 years
+Here's an example showing
+```console
+$ timemath 01/09/1939 02/09/1945
 
+second:  189326400.0
+minutes: 3155440.0
+hours:   52590.7
+days:    2191.3
+weeks:   313.0
+months:  72.0
+years:   6.0
 ```
->timemath 03/12/1281 05/10/2024
-```
-
->5097600 seconds\
->84960 minutes\
->1416 hours\
->59 days\
->2 months\
->743 years
