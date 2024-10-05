@@ -26,12 +26,12 @@ int main(int argc, char** argv)
 
 	double time = difftime(mktime(&then), mktime(&now));
 
-	double seconds = fabs(time);
+	double years = fabs(year2 - year1);
+	double seconds = fabs(time) + (years * 3.154e+7);
 	double minutes = fabs(seconds / 60);
 	double hours = fabs(minutes / 60);
 	double days = fabs(hours / 24);
 	double months = fabs(days / 30);
-	double years = fabs(year2 - year1);
 
 	printf("%.f seconds\n", seconds);
 	printf("%.f minutes\n", minutes);
