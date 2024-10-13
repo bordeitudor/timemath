@@ -1,7 +1,7 @@
 Simple utility that approximately calculates the time between two calendar dates in units of time.\
 The library works with dates starting from 0, and as of now supports all commonly used date formats.
 
-Only depends on the C standard library, requiring a compiler supporting >C89.
+The only dependency is the C standard library, requiring a compiler supporting C11.
 
 ## Usage
 ```console

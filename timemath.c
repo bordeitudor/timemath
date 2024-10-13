@@ -40,7 +40,7 @@ int main(int argc, char** argv)
 
 	if (argc < 2) {
 		usage();
-		exit(-1);
+		return -1;
 	}
 
 	char* dateargs[2];
@@ -65,15 +65,31 @@ int main(int argc, char** argv)
 				else if (strcmp(argv[i], "YYYYDDMM") == 0) {
 					format = YYYYDDMM;
 				}
+				else if(strcmp(argv[i], "DDYYYYMM") == 0) {
+					format = DDYYYYMM;
+				}
+				else if(strcmp(argv[i], "MMDDDDYY") == 0) {
+					format = MMYYYYDD;
+				}
 				else {
 					fprintf(stderr, "error: invalid or unsupported format '%s'\n", argv[i]);
+					exit(-1);
 				}
 			}
 			else {
 				fprintf(stderr, "error: expected date format after %s\n", FORMAT_OPTION);
+				exit(-1);
 			}
 		}
 		else {
+			// Checking if argument isa date or not
+			for(int j = 0; j < strlen(argv[i]); ++j) {
+				if(!isdigit(argv[i][j]) && argv[i][j] != '/') {
+					usage();
+					exit(0);
+				}
+			}
+
 			dateargs[datearg++] = argv[i];
 		}
 	}
@@ -107,7 +123,7 @@ int main(int argc, char** argv)
 	double actualyears = (seconds / YEAR);
 
 	putc('\n', stdout);
-	printf("seconds:  %.0f\n", seconds);
+	printf("seconds: %.0f\n", seconds);
 	printf("minutes: %.1f\n", minutes);
 	printf("hours:   %.1f\n", hours);
 	printf("days:    %.1f\n", days);
@@ -150,6 +166,16 @@ struct tm parsetime(const char* const str, int format)
 		yearMember = 0;
 		monthMember = 2;
 		dayMember = 1;
+	} break;
+	case MMYYYYDD: {
+		yearMember = 1;
+		monthMember = 0;
+		dayMember = 2;
+	} break;
+	case DDYYYYMM: {
+		yearMember = 1;
+		monthMember = 2;
+		dayMember = 0;
 	} break;
 	default: {
 		assert(false && "unreachable");
@@ -227,6 +253,7 @@ struct tm parsetime(const char* const str, int format)
 
 	if (res.tm_mday < 0 || res.tm_mday > monthLengths[res.tm_mon]) {
 		fprintf(stderr, "error: invalid day '%d', expected value between 0-%d\n", res.tm_mday+1, monthLengths[res.tm_mon]);
+		exit(-1);
 	}
 
 	return res;
@@ -235,8 +262,8 @@ struct tm parsetime(const char* const str, int format)
 void usage()
 {
 	putc('\n', stdout);
-	printf("usage: timemath <date> <date> [options]\n");
+	printf("Usage: timemath <date> <date> [options]\n");
 	printf("options:\n");
-	printf("\t-format (by default DDMMYYYY)\n");
-	printf("\t\tDDMMYYYY, MMDDYYYY, YYYYDDMM, YYYYMMDD\n");
+	printf("\t-format ");
+	printf("\t\tDDMMYYYY (default), MMDDYYYY, YYYYMMDD, YYYYDDMM, MMYYYYDD, DDYYYYMM\n");
 }
